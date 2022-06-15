@@ -200,12 +200,12 @@ def assign_interface(interface, configs):
     named = 0
 
     for entry in configs.keys():
-        if configs[entry]['HWADDR'] in interface[0]:
+        if configs[entry]['HWADDR'].strip('"') in interface[0]:
             if 'DEVICE' in configs[entry].keys():
-                link_name_change(0, interface[2], configs[entry]['DEVICE'].lower())
+                link_name_change(0, interface[2], configs[entry]['DEVICE'].lower().strip('"'))
                 named += 1
             elif 'NAME' in configs[entry].keys():
-                link_name_change(0, interface[2], configs[entry]['NAME'].lower())
+                link_name_change(0, interface[2], configs[entry]['NAME'].lower().strip('"'))
                 named += 1
 
     return named
